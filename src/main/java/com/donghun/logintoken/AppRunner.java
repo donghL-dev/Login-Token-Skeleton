@@ -14,11 +14,11 @@ public class AppRunner implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        Account account = Account.builder()
-                .email("AppRunner@email.com")
-                .password("AppRunnerPassword")
-                .build();
-
-        accountRepository.save(account);
+//        Account account = Account.builder()
+//                .email("AppRunner@email.com")
+//                .password("AppRunnerPassword")
+//                .build();
+//
+//        accountRepository.save(account);
     }
 }

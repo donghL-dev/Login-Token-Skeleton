@@ -1,12 +1,10 @@
 package com.donghun.logintoken.account;
 
 import lombok.*;
+import net.minidev.json.annotate.JsonIgnore;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.validation.constraints.Email;
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -20,8 +18,16 @@ public class Account {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Email
+    @Column(unique = true) @NotNull
     private String email;
 
+    @Column @NotNull
+    @JsonIgnore
     private String password;
+
+    @Column
+    private String name;
+
+    @Column
+    private String picture;
 }
