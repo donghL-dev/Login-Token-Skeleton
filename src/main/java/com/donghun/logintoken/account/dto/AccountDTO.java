@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.validator.constraints.Length;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -19,7 +20,7 @@ public class AccountDTO {
     @Email @NotBlank
     private String email;
 
-    @NotBlank
+    @NotBlank @Length(min = 8, max = 20)
     private String password;
 
     private String name;
