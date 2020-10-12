@@ -8,5 +8,9 @@ spring:
       jdbc-url: jdbc:h2:mem:testdb
   jpa:
     properties:
+      show-sql: true
       hibernate:
         dialect: org.hibernate.dialect.H2Dialect
+
+jwt:
+  secretkey: secret

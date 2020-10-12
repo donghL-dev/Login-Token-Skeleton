@@ -28,10 +28,11 @@ public class AccountRepositoryTest {
 
         accountRepository.save(account);
 
-        Account account1 = accountRepository.findByEmail(account.getEmail());
+        Account dbAccount = accountRepository.findByEmail(account.getEmail());
 
-        assertThat(account1).isNotNull();
-        assertThat(account.getEmail()).isEqualTo(account1.getEmail());
-        assertThat(account.getPassword()).isEqualTo(account1.getPassword());
+        assertThat(dbAccount).isNotNull();
+        assertThat(dbAccount.getId()).isNotNull();
+        assertThat(account.getEmail()).isEqualTo(dbAccount.getEmail());
+        assertThat(account.getPassword()).isEqualTo(dbAccount.getPassword());
     }
 }

@@ -7,6 +7,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.Length;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -27,10 +28,10 @@ public class AccountDTO {
 
     private String picture;
 
-    public Account toEntity() {
+    public Account toEntity(PasswordEncoder passwordEncoder) {
         return Account.builder()
                 .email(this.email)
-                .password(this.password)
+                .password(passwordEncoder.encode(this.password))
                 .name(this.name)
                 .picture(this.picture)
                 .build();

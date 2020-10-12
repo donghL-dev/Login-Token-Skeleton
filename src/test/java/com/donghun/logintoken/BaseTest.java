@@ -15,12 +15,14 @@ import org.springframework.web.context.WebApplicationContext;
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
 @ActiveProfiles("test")
+@AutoConfigureMockMvc
 @Disabled
 public class BaseTest {
 
     @Autowired
     protected WebApplicationContext context;
 
+    @Autowired
     protected MockMvc mockMvc;
 
     @Autowired
