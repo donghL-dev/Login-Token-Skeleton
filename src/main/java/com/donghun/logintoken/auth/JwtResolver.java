@@ -18,14 +18,12 @@ import java.util.stream.Collectors;
 @Component
 public class JwtResolver {
 
-    @Value("${jwt.secret-key}")
-    private String key;
-
-    private final long EXPIRED_AT = 60 * 30 * 1000;
+    private static final String KEY = "secret";
 
     public String createJwtToken(Account account) {
+        long EXPIRED_AT = 60 * 30 * 1000;
         return Jwts.builder()
-                .signWith(SignatureAlgorithm.HS512, key)
+                .signWith(SignatureAlgorithm.HS512, KEY)
                 .setHeaderParam("typ", "JwtToken")
                 .setIssuer("Token Base Login Project")
                 .setAudience("Token Base Login Project")
@@ -39,7 +37,7 @@ public class JwtResolver {
     }
 
     public Jws<Claims> getParsedToken(String token) {
-        return Jwts.parser().setSigningKey(key)
+        return Jwts.parser().setSigningKey(KEY)
                 .parseClaimsJws(token);
     }
 

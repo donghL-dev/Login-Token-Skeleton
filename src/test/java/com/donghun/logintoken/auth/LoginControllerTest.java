@@ -78,6 +78,8 @@ class LoginControllerTest extends BaseTest {
                 .andExpect(jsonPath("message").exists())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
                 .andExpect(status().isBadRequest());
+
+        accountRepository.deleteAll();
     }
 
     private static Stream<Arguments> params() {
