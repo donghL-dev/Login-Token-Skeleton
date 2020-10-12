@@ -63,13 +63,15 @@ class LoginControllerTest extends BaseTest {
                 .password(password)
                 .build();
 
-        Account account = accountRepository.save(Account.builder()
-                .email("test@test.com")
-                .password(passwordEncoder.encode("testPassword1234"))
-                .build());
+        if (message.equals("존재하지 않는 아이디") || message.equals("비밀번호 불일치")) {
+            Account account = accountRepository.save(Account.builder()
+                    .email("test@test.com")
+                    .password(passwordEncoder.encode("testPassword1234"))
+                    .build());
 
-        assertThat(account).isNotNull();
-        assertThat(account.getId()).isNotNull();
+            assertThat(account).isNotNull();
+            assertThat(account.getId()).isNotNull();
+        }
 
         mockMvc.perform(post("/api/login")
                 .contentType(MediaType.APPLICATION_JSON)
