@@ -5,7 +5,6 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Component;
@@ -18,7 +17,7 @@ import java.util.stream.Collectors;
 @Component
 public class JwtResolver {
 
-    private static final String KEY = "secret";
+    private final String KEY = "secret";
 
     public String createJwtToken(Account account) {
         long EXPIRED_AT = 60 * 30 * 1000;
