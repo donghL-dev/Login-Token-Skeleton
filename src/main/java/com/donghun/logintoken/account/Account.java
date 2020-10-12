@@ -5,6 +5,7 @@ import net.minidev.json.annotate.JsonIgnore;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -12,7 +13,7 @@ import javax.validation.constraints.NotNull;
 @Setter
 @Builder
 @Entity
-public class Account {
+public class Account implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,8 +22,8 @@ public class Account {
     @Column(unique = true) @NotNull
     private String email;
 
-    @Column @NotNull
     @JsonIgnore
+    @Column @NotNull
     private String password;
 
     @Column

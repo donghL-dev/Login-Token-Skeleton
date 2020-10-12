@@ -4,7 +4,6 @@ import com.donghun.logintoken.BaseTest;
 import com.donghun.logintoken.account.dto.AccountDTO;
 import com.donghun.logintoken.auth.JwtResolver;
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -14,20 +13,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.MediaTypes;
 import org.springframework.http.MediaType;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import org.springframework.web.filter.CharacterEncodingFilter;
 
-import java.nio.charset.StandardCharsets;
 import java.util.Random;
 import java.util.stream.Stream;
 
-import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity;
+import static org.springframework.security.test.web.servlet.response.SecurityMockMvcResultMatchers.unauthenticated;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 class AccountControllerTest extends BaseTest {
 
@@ -168,7 +162,8 @@ class AccountControllerTest extends BaseTest {
         mockMvc.perform(get("/api/accounts/" + random.nextInt(Integer.MAX_VALUE))
                 .header("AUTH-TOKEN", "Invalid Token"))
                 .andDo(print())
-                .andExpect(status().isForbidden());
+                .andExpect(unauthenticated())
+                .andExpect(status().isUnauthorized());
     }
 
     @DisplayName("Account 본인 조회 성공 테스트")
