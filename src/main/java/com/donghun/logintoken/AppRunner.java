@@ -19,7 +19,7 @@ public class AppRunner implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
-        accountRepository.save(AccountDTO.builder()
-                .email("test@test.com").password("password1!").build().toEntity(passwordEncoder));
+//        accountRepository.save(AccountDTO.builder()
+//                .email("test@test.com").password("password1!").build().toEntity(passwordEncoder));
     }
 }
