@@ -1,4 +1,6 @@
 spring:
+  profiles:
+    include: oauth
   datasource:
     username: sa
     password:

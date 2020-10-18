@@ -1,0 +1,49 @@
+.form_border {
+    background: rgba(0,0,0,0.8);
+    border-radius: 4px;
+    border: none;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 10rem auto;
+    padding: 2rem;
+    width: 520px;
+}
+
+.base_input {
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-bottom: 1rem;
+    padding: 1rem;
+    width: 100%;
+}
+
+.btn {
+    background: dodgerblue;
+    border-radius: 4px;
+    border: none;
+    color: white;
+    margin-bottom: 0.5rem;
+    padding: 1rem;
+    width: 100%;
+}
+
+.google {
+    background: green;
+    text-align: center;
+    border-radius: 4px;
+    border: none;
+    color: white;
+    margin-bottom: 0.5rem;
+    padding: 1rem;
+}
+
+a {
+    text-decoration: none;
+}
+
+.error {
+    color: red;
+    margin-top: 0;
+}

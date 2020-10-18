@@ -23,7 +23,7 @@ public class Account implements Serializable {
     private String email;
 
     @JsonIgnore
-    @Column @NotNull
+    @Column
     private String password;
 
     @Column

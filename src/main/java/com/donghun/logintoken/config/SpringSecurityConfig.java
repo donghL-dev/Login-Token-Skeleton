@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -33,8 +34,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
             .csrf().disable()
             .authorizeRequests()
                 .antMatchers(HttpMethod.POST, "/api/accounts/sign-up", "/api/login").permitAll()
-                .antMatchers(HttpMethod.GET, "/swagger-ui/**").permitAll()
-                .antMatchers(AUTH_WHITELIST).permitAll()
+                .antMatchers(HttpMethod.GET,"/google-sign-in","/s.html", "/base.css", "/api/login/oauth2-google").permitAll()
                 .anyRequest().authenticated()
             .and()
                 .sessionManagement()
@@ -48,8 +48,13 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Bean
+    public AuthenticationManager authenticationManagerBean() throws Exception {
+        return authenticationManager();
+    }
+
+    @Bean
     public Filter jwtAuthorizationFilter() throws Exception {
-        JwtAuthorizationFilter filter = new JwtAuthorizationFilter(authenticationManager());
+        JwtAuthorizationFilter filter = new JwtAuthorizationFilter(authenticationManagerBean());
         filter.setJwtResolver(getApplicationContext());
         return filter;
     }
