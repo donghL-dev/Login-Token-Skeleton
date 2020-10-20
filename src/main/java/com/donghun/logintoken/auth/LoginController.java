@@ -102,7 +102,6 @@ public class LoginController {
 
         return ResponseEntity.ok().contentType(MediaType.APPLICATION_JSON)
                 .body("{\"token\" : \"" + createJwtToken(userInfo) + "\"}");
-
     }
 
     private String createJwtToken(Map<String, String> result) {

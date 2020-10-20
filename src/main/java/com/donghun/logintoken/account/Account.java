@@ -1,7 +1,8 @@
 package com.donghun.logintoken.account;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.*;
-import net.minidev.json.annotate.JsonIgnore;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -13,6 +14,7 @@ import java.io.Serializable;
 @Setter
 @Builder
 @Entity
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Account implements Serializable {
 
     @Id
@@ -22,8 +24,8 @@ public class Account implements Serializable {
     @Column(unique = true) @NotNull
     private String email;
 
-    @JsonIgnore
     @Column
+    @JsonIgnore
     private String password;
 
     @Column
